@@ -1,4 +1,7 @@
+
+
 let teams2 = [];
+
 
 function showCards() {
     const cardContainer = document.getElementById("card-container");
@@ -6,12 +9,14 @@ function showCards() {
     const templateCard = document.querySelector(".card");
 
     for (let i = 0; i < teams2.length; i++) {
+
         let teamID = parseInt(teams2[i].replace(/\D/g, ''), 10);
 
         const nextCard = templateCard.cloneNode(true);
         editCardContent(nextCard, teamID, i);
         cardContainer.appendChild(nextCard);
     }
+    console.log(teams2.length);
 }
 
 
@@ -25,24 +30,22 @@ function quoteAlert() {
     alert("Life could be a dream...!");
 }
 
-function pastGame() {}
 
 function displayTeamList() {
-    teams2 = loadTeamsData();  //---> this is in ScriptAPI btw
+    teams2 = loadTeamsData(); 
     console.log("Team List:", teams2);
 }
 
 function editCardContent(card, teamID, i) {
-    fetch(`https://corsproxy.io/?https://api.football-data.org/v2/teams/${teamID}`, {
-        headers: {
-            'X-Auth-Token': 'be3a4a0da29649b49f4e2993959b7c28'
-        }
-    })
+   const proxyServer = "http://localhost:3000/api"; // Use your proxy server
+    const apiURL = `https://api.football-data.org/v4/teams/${teamID}`;
+    
+    fetch(`${proxyServer}?url=${encodeURIComponent(apiURL)}`)
     .then(response => response.json())
     .then(data => {
-        if (data && data.crestUrl) {
+        if (data && data.crest) {
             const teamName = data.name;
-            const teamLogoURL = data.crestUrl;
+            const teamLogoURL = data.crest;
             
             card.style.display = "block";
 
@@ -73,3 +76,24 @@ function editCardContent(card, teamID, i) {
         } 
     })
 }
+
+function removeTeam(index) {
+    teams2.splice(index, 1);
+    saveTeamsData();
+    window.location.reload();
+}
+
+// Save teams data to localStorage
+function saveTeamsData() {
+    localStorage.setItem('teams', JSON.stringify(teams2));
+}
+
+// Load teams data from localStorage
+function loadTeamsData() {
+    const storedTeams = localStorage.getItem('teams');
+    if (storedTeams) {
+        teams2 = JSON.parse(storedTeams);
+    } 
+    return teams2;
+}
+
