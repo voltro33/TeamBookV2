@@ -37,7 +37,9 @@ function displayTeamList() {
 }
 
 function editCardContent(card, teamID, i) {
-   const proxyServer = "http://localhost:3000/api"; // Use your proxy server
+  // const proxyServer = "http://localhost:3000/api"; // Use your proxy server OLD ONE
+       const proxyServer = "https://teambookv2.onrender.com/api"; // Use your proxy server 
+
     const apiURL = `https://api.football-data.org/v4/teams/${teamID}`;
     
     fetch(`${proxyServer}?url=${encodeURIComponent(apiURL)}`)
