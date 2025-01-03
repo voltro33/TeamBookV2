@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    const proxyServer = "http://localhost:3000/api";  // Backend proxy server URL
+    // const proxyServer = "http://localhost:3000/api";  // Backend proxy server URL OLD ONE
+    const proxyServer = "https://teambookv2.onrender.com/api";  // NEW ONE
 
     function populateLeagues() {
         const apiURL = `https://api.football-data.org/v4/competitions`;
