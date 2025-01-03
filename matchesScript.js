@@ -70,7 +70,7 @@ function findImage(teamID) {
     const url = `https://api.football-data.org/v4/teams/${teamID}`;
 
     // Call your backend with the constructed URL
-    return fetch(`http://localhost:3000/api?url=${encodeURIComponent(url)}`)
+    return fetch(`https://teambookv2.onrender.com/api?url=${encodeURIComponent(url)}`)
         .then(response => response.json())
         .then(data => {
             if (data && data.crest) {
