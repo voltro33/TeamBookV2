@@ -3,7 +3,7 @@ function fetchLastFiveMatches(teamId, numMatches) {
     const url = `https://api.football-data.org/v4/teams/${teamId}/matches?status=FINISHED&limit=${numMatches}`;
     
     // Call your backend with the constructed URL
-    fetch(`http://localhost:3000/api?url=${encodeURIComponent(url)}`)
+    fetch(`https://teambookv2.onrender.com/api?url=${encodeURIComponent(url)}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to retrieve data!');
