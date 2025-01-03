@@ -1,13 +1,10 @@
 function fetchFutureMatches(teamId, numMatch) {
     const url = `https://teambookv2.onrender.com/api?url=https://api.football-data.org/v4/teams/${teamId}/matches?status=SCHEDULED`;
-    const headers = {
-        'X-Auth-Token': 'be3a4a0da29649b49f4e2993959b7c28'
-    };
 
-    fetch(url, { headers })
+    fetch(url) // No headers passed
         .then(response => response.json())
         .then(data => {
-            console.log('API response:', data); // Log the data to see its structure
+            console.log('API response:', data); 
 
             if (data.matches) {
                 const futureMatches = data.matches.slice(0, numMatch).reverse();
@@ -62,12 +59,9 @@ function fetchFutureMatches(teamId, numMatch) {
         });
 }
 
-
 function findImage(teamID) {
-    // Construct the URL for the team's logo API
     const url = `https://api.football-data.org/v4/teams/${teamID}`;
 
-    // Call your backend with the constructed URL
     return fetch(`https://teambookv2.onrender.com/api?url=${encodeURIComponent(url)}`)
         .then(response => response.json())
         .then(data => {
