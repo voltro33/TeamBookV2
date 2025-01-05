@@ -104,6 +104,11 @@ function loadTeamsData() {
     if (storedTeams) {
         teams2 = JSON.parse(storedTeams);
     } 
+    if (teams2.length === 0) {
+    inactivityMessage.classList.toggle('hidden', false); 
+} else {
+    inactivityMessage.classList.toggle('hidden', true);  
+}
     return teams2;
 }
 
