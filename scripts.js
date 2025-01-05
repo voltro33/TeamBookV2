@@ -1,7 +1,7 @@
 
 
 let teams2 = [];
-
+ const inactivityMessage = document.getElementById("hiddenId");
 
 function showCards() {
     const cardContainer = document.getElementById("card-container");
@@ -32,15 +32,8 @@ function quoteAlert() {
 
 
 function displayTeamList() {
- const inactivityMessage = document.getElementById("hiddenId");
-
     teams2 = loadTeamsData(); 
     console.log("Team List:", teams2);
-    if (teams2.length === 0) {
-    inactivityMessage.classList.toggle('hidden', false); 
-} else {
-    inactivityMessage.classList.toggle('hidden', true);  
-}
 }
 
 
@@ -93,12 +86,10 @@ function removeTeam(index) {
     window.location.reload();
 }
 
-// Save teams data to localStorage
 function saveTeamsData() {
     localStorage.setItem('teams', JSON.stringify(teams2));
 }
 
-// Load teams data from localStorage
 function loadTeamsData() {
     const storedTeams = localStorage.getItem('teams');
     if (storedTeams) {
