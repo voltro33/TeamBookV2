@@ -32,13 +32,21 @@ function quoteAlert() {
 
 
 function displayTeamList() {
+ const inactivityMessage = document.getElementById("hiddenId");
+
     teams2 = loadTeamsData(); 
     console.log("Team List:", teams2);
+    if (teams2.length === 0) {
+    inactivityMessage.classList.toggle('hidden', false); 
+} else {
+    inactivityMessage.classList.toggle('hidden', true);  
 }
+}
+
 
 function editCardContent(card, teamID, i) {
   // const proxyServer = "http://localhost:3000/api"; // Use your proxy server OLD ONE
-       const proxyServer = "https://teambookv2.onrender.com/api"; // Use your proxy server 
+       const proxyServer = "https://teambookv2.onrender.com/api"; // NEW Render proxy server 
 
     const apiURL = `https://api.football-data.org/v4/teams/${teamID}`;
     
@@ -67,7 +75,7 @@ function editCardContent(card, teamID, i) {
 
             const removeButton = teamInfo.querySelector('.removeTeam');
             removeButton.addEventListener('click', function() {
-                removeTeam(i);   // ----> this is in scriptAPI btw, just removes a team from the index and saves it on the session
+                removeTeam(i);   
             });
 
             const viewButton = teamInfo.querySelector('.view-button');
