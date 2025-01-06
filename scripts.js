@@ -1,7 +1,6 @@
 
 
 let teams2 = [];
- const inactivityMessage = document.getElementById("hiddenId");
 
 function showCards() {
     const cardContainer = document.getElementById("card-container");
@@ -93,6 +92,7 @@ function saveTeamsData() {
 }
 
 function loadTeamsData() {
+  const inactivityMessage = document.getElementById("hiddenId");
     const storedTeams = localStorage.getItem('teams');
     if (storedTeams) {
         teams2 = JSON.parse(storedTeams);
