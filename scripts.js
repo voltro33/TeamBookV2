@@ -33,6 +33,8 @@ function quoteAlert() {
 
 function displayTeamList() {
     teams2 = loadTeamsData(); 
+ console.log(inactivityMessage); 
+
     console.log("Team List:", teams2);
 }
 
